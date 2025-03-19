@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean": "rimraf .next out"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -16,7 +17,6 @@
     "@react-three/fiber": "^8.15.19",
     "framer-motion": "^12.5.0",
     "geist": "^1.3.1",
-    "geist-ui": "^0.0.102",
     "mongodb": "^6.15.0",
     "mongoose": "^8.12.1",
     "next": "^15.2.3",
@@ -31,8 +31,17 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/three": "^0.156.0",
-    "eslint": "^8",
-    "eslint-config-next": "13.5.4",
-    "typescript": "^5"
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "autoprefixer": "^10.4.18",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "15.2.3",
+    "postcss": "^8.4.35",
+    "rimraf": "^5.0.5",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.4.2"
+  },
+  "engines": {
+    "node": ">=18.17.0"
   }
 }
