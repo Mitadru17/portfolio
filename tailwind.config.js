@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     screens: {
@@ -16,23 +16,23 @@ module.exports = {
     },
     extend: {
       colors: {
-        background: '#0f0e13',
-        surface: '#1a1a22',
-        primary: '#ff2957', // neon red
-        secondary: '#08f7fe', // cyan
-        accent: '#ff2957',
-        dark: '#000814',
+        primary: '#ff2957',
+        secondary: '#08f7fe',
+        accent: '#fe53bb',
+        background: '#000000',
+        surface: '#111111',
         'text-primary': '#ffffff',
-        'text-secondary': '#9ca3af',
+        'text-secondary': '#a0a0a0',
+        dark: '#0a0a0a',
       },
       fontFamily: {
         sans: ['var(--font-geist-sans)'],
         mono: ['var(--font-geist-mono)'],
       },
       animation: {
-        'text-slide': 'text-slide 12s linear infinite',
+        'text-slide': 'text-slide 10s linear infinite',
         'glow': 'glow 1.5s ease-in-out infinite alternate',
-        'neon-pulse': 'neon-pulse 2s ease-in-out infinite alternate',
+        'neon-pulse': 'neon-pulse 2s ease-in-out infinite',
         'float': 'float 6s ease-in-out infinite',
         'pulse-soft': 'pulse-soft 3s ease-in-out infinite alternate',
         'pulse-intense': 'pulse-intense 4s ease-in-out infinite alternate',
@@ -44,18 +44,12 @@ module.exports = {
       },
       keyframes: {
         'text-slide': {
-          '0%, 16.67%': {
-            transform: 'translateY(0%)',
-          },
-          '33.33%, 50%': {
-            transform: 'translateY(-25%)',
-          },
-          '66.67%, 83.33%': {
-            transform: 'translateY(-50%)',
-          },
-          '100%': {
-            transform: 'translateY(-75%)',
-          },
+          '0%, 16%': { transform: 'translateY(0)' },
+          '20%, 36%': { transform: 'translateY(-25%)' },
+          '40%, 56%': { transform: 'translateY(-50%)' },
+          '60%, 76%': { transform: 'translateY(-75%)' },
+          '80%, 96%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(0)' },
         },
         'glow': {
           '0%': {
@@ -66,12 +60,8 @@ module.exports = {
           },
         },
         'neon-pulse': {
-          '0%': {
-            boxShadow: '0 0 5px #ff2957, 0 0 10px #ff2957'
-          },
-          '100%': {
-            boxShadow: '0 0 10px #ff2957, 0 0 20px #ff2957'
-          },
+          '0%, 100%': { textShadow: '0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #ff2957, 0 0 82px #ff2957, 0 0 92px #ff2957, 0 0 102px #ff2957, 0 0 151px #ff2957' },
+          '50%': { textShadow: '0 0 4px #fff, 0 0 7px #fff, 0 0 13px #fff, 0 0 26px #ff2957, 0 0 52px #ff2957, 0 0 62px #ff2957, 0 0 72px #ff2957, 0 0 101px #ff2957' },
         },
         'float': {
           '0%': {
