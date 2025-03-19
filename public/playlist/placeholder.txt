@@ -1,0 +1,27 @@
+This folder is for your music playlist files.
+
+For the Spotify player to work, you'll need to add:
+
+1. Audio files (.mp3) for each song in your playlist
+2. Cover images (.jpg/.png) for each song
+
+Files needed based on the current playlist configuration:
+- dil-ibaadat.mp3
+- dil-ibaadat.jpg
+- tum-mile.mp3
+- tum-mile.jpg
+- ae-dil-hai-mushkil.mp3
+- ae-dil-hai-mushkil.jpg
+- channa-mereya.mp3
+- channa-mereya.jpg
+- bulleya.mp3
+- bulleya.jpg
+
+You'll need to either:
+1. Add these files to this folder
+2. Or modify the playlist.ts file to point to your actual files
+
+Note: Modern browsers require either:
+- Audio files to be hosted on the same domain
+- The server serving the audio files must have CORS headers configured properly
+- Or you can use publicly available audio URLs (e.g., from a CDN) 

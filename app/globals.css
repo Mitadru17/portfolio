@@ -1,0 +1,287 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 15, 14, 19;
+  --background-end-rgb: 0, 0, 20;
+  --primary-color: #ff2957;
+  --primary-glow: 0 0 10px #ff2957, 0 0 20px #ff2957;
+  --primary-glow-intense: 0 0 10px #ff2957, 0 0 20px #ff2957, 0 0 30px #ff2957, 0 0 40px #ff2957;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      rgb(var(--background-start-rgb)),
+      rgb(var(--background-end-rgb))
+    );
+  min-height: 100vh;
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Check for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  .neon-text-pulse,
+  .neon-line-pulse,
+  .neon-outline-pulse::before,
+  .scanlines::before {
+    animation: none !important;
+  }
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.vertical-text-upright {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+
+/* Original neon glow */
+.neon-glow {
+  text-shadow: 0 0 5px #ff2957, 0 0 10px #ff2957, 0 0 15px #ff2957;
+}
+
+/* Add neon text pulse animation for text elements */
+.neon-text-pulse {
+  animation: neon-text-pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes neon-text-pulse {
+  from {
+    text-shadow: 0 0 5px #ff2957, 0 0 10px #ff2957;
+  }
+  to {
+    text-shadow: 0 0 10px #ff2957, 0 0 20px #ff2957, 0 0 30px #ff2957;
+  }
+}
+
+/* Pulsating line - optimized for performance */
+.neon-line-pulse {
+  position: relative;
+  animation: line-pulse 4s ease-in-out infinite;
+  box-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color);
+  will-change: box-shadow, opacity;
+}
+
+@keyframes line-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color);
+    opacity: 0.85;
+  }
+  50% {
+    box-shadow: 0 0 8px var(--primary-color), 0 0 15px var(--primary-color);
+    opacity: 1;
+  }
+}
+
+.neon-circle {
+  box-shadow: 0 0 15px #ff2957, 0 0 30px #ff2957;
+}
+
+/* Original outline */
+.neon-outline {
+  position: relative;
+}
+
+.neon-outline::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 1px solid #ff2957;
+  box-shadow: 0 0 10px #ff2957, inset 0 0 10px #ff2957;
+  opacity: 0.8;
+  z-index: -1;
+  animation: pulse 2s infinite;
+}
+
+/* Enhanced pulsating outline - optimized for performance */
+.neon-outline-pulse {
+  position: relative;
+}
+
+.neon-outline-pulse::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 0 10px var(--primary-color);
+  opacity: 0.8;
+  z-index: -1;
+  animation: outline-pulse 3s ease-in-out infinite;
+  will-change: opacity;
+}
+
+@keyframes outline-pulse {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* Scanlines effect - optimized */
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanlines::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 0.5%,
+    transparent 1%
+  );
+  animation: scanline 15s linear infinite;
+  pointer-events: none;
+  z-index: 10;
+  will-change: transform;
+}
+
+/* Slower scanlines on mobile for better performance */
+@media (max-width: 768px) {
+  .scanlines::before {
+    animation: scanline 20s linear infinite;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .neon-text-pulse {
+    animation-duration: 4s; /* Slower animations on mobile */
+  }
+  
+  .neon-line-pulse, 
+  .neon-outline-pulse::before {
+    animation-duration: 5s; /* Slower animations on mobile */
+  }
+}
+
+/* Page transitions */
+.page-transition-enter {
+  opacity: 0;
+}
+.page-transition-enter-active {
+  opacity: 1;
+  transition: opacity 400ms;
+}
+.page-transition-exit {
+  opacity: 1;
+}
+.page-transition-exit-active {
+  opacity: 0;
+  transition: opacity 400ms;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-20 px-4 md:px-16 lg:px-24;
+  }
+  
+  .vertical-nav-link {
+    @apply relative text-white opacity-80 hover:opacity-100 hover:text-[#ff2957] transition-all duration-300;
+  }
+  
+  .vertical-nav-link::before {
+    @apply content-[''] absolute top-0 right-[-5px] h-0 w-[2px] bg-[#ff2957] transition-all duration-300;
+  }
+  
+  .vertical-nav-link:hover::before {
+    @apply h-full;
+  }
+  
+  .container-width {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .cyberpunk-button {
+    @apply relative overflow-hidden bg-transparent border border-[#ff2957] text-[#ff2957] font-mono uppercase px-6 py-2 transition-all duration-300 hover:text-white hover:bg-[#ff2957]/20 hover:border-[#ff2957]/80 hover:shadow-[0_0_15px_#ff2957];
+  }
+
+  .cyberpunk-button::before {
+    @apply content-[''] absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-all duration-500;
+  }
+
+  .cyberpunk-button:hover::before {
+    @apply left-[100%];
+  }
+
+  .tech-tag {
+    @apply inline-block px-3 py-1 text-xs font-mono bg-dark border border-[#ff2957]/50 text-[#ff2957]/90 rounded-sm;
+  }
+}
+
+/* AI Assistant highlight effects */
+.highlight-project {
+  animation: highlight-pulse 2s ease-in-out;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes highlight-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(14, 165, 233, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(14, 165, 233, 0);
+  }
+}
+
+/* Make highlight more visible in dark mode */
+.dark .highlight-project {
+  box-shadow: 0 0 15px 5px rgba(14, 165, 233, 0.3);
+} 
